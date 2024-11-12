@@ -1,6 +1,6 @@
 ---
 title: "Week 3 Exercises"
-author: "HD Sheets"
+author: "Katelyn Bonitatibus"
 date: "10/1/2024"
 output: pdf_document
 ---
@@ -29,11 +29,23 @@ Note:
 You will probably want to use stringr
 
 ```{R}
+library(stringr)
+```
+
+```{R}
 name_in="Sheets, Dave"
 
-reorder_name<-function(last_first){
-  #your code here
+reorder_name<-function(last_first)
+
+{z=str_split(name_in,", ",n=2)
+ print(z)
+ y=str_c(z[[1]][2]," ",z[[1]][1])
+ return(y)
 }
+
+reorder_name(name_in)
+  #your code here
+
 
 
 ```
@@ -46,13 +58,21 @@ x=c(1,3,5,7,9,11,13)
 
 powers_df<-function(x)
 {
-  
+  j=x^2
+  k=x^(1/2)
+ 
+print(x)
+print(j)
+print(k)
 }
-
 #your code here
 
 ```
 
+
+```{R}
+powers_df(x)
+```
 
 3.) Write in a function that takes in a value x and returns
     
@@ -60,10 +80,41 @@ powers_df<-function(x)
     y=0.5x if x>=0
     
     This is a variant on a relu function as used in some neural networks.
+    
+```{R}
+
+x=1
+
+if(x<0)
+{
+  y=0.3*x
+}
+if(x>=0)
+{
+  y=0.5*x
+}
+
+cat("Y is",y)
+
+```
 
 4.) Write a function that takes in a value x and returns the first power of two
 greater than x  (use a While loop)
 
+```{R}
+power2greater<-function(x)
+
+  while(x>2)
+{
+  s=2^x
+
+  return(s)
+}
+```
+
+```{R}
+power2greater(3)
+```
 
 5) Two Sum - Write a function named two_sum()
 
@@ -102,14 +153,39 @@ Only one valid answer exists.
 *Use the function seq_along to iterate*
 
 ```{r}
-two_sum <- function(nums_vector,target){
-  #your code here
- 
+
+two_sum <- function(nums_vector,target) 
+{
+ returnlist=list() 
+for(i in 1:(length(nums_vector)-1))
+{ 
+
+  
+  for(j in ((i+1):length(nums_vector)))
+  {
+  
+  if((target-nums_vector[i])==nums_vector[j])
+  {
+   returnlist =append(returnlist,list(i,j))
+   #print(returnlist)
+  }
+  }
+}
+   return(returnlist)
 }
 
 
+  
+  
+  
+  
+  #your code here
 
 
+```
+
+
+```{R}
 # Test code
 nums_vector <- c(5,7,12,34,6,10,8,9)
 target <- 13
@@ -144,6 +220,21 @@ b="Hey, we have a code 234 on machine a-234-12, call me at 678-321-98766"
 c="On 12-23-2022, Joe over at 122 Turnpike, dialled 912-835-4756, tell me by 9:02 pm Wed"
 ```
 
+
+```{R}
+str_extract(a,"456-123-2329")
+```
+
+```{R}
+str_match(b,"\\d")
+```
+
+```{R}
+str_match(c,"[[:digit:]]")
+```
+
+str_dup is used to specify a certain number of characters
+
 7.)  For lines below,  extract the domains (ie the part of the address after @)
 
 ```{R}
@@ -152,4 +243,12 @@ e="His address is:  c.brown@hopeles.org, do write him"
 f="h.potter@hogwarts.edu is bouncing back on me, I wonder why?"
 
 ```
+
+```{R}
+str_extract(d,"gmail.com")
+str_extract(e,"hopeles.org")
+str_extract(f,"hogwarts.edu")
+```
+
+
 
